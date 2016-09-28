@@ -60,5 +60,15 @@ public class Pronostico {
     public void setPronosticoExtendidos(List<PronosticoExtendido> pronosticoExtendidos) {
         this.pronosticoExtendidos = pronosticoExtendidos;
     }
+
+    @Override
+    public String toString() {
+        return "Pronostico:\n" +
+                "localidad=" + localidad +
+                "\ndia=" + dia +
+                "\natmosfera=" + atmosfera +
+                "\nviento=" + viento +
+                "\npronosticoExtendidos=" + pronosticoExtendidos;
+    }
 }
 

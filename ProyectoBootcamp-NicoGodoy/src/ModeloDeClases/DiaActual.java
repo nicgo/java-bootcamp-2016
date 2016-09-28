@@ -9,9 +9,9 @@ public class DiaActual {
 
     private Date fecha;
     private float temp;
-    private float descripcion;
+    private String descripcion;
 
-    public DiaActual(Date fecha, float temp, float descripcion) {
+    public DiaActual(Date fecha, float temp, String descripcion) {
         this.fecha = fecha;
         this.temp = temp;
         this.descripcion = descripcion;
@@ -33,11 +33,11 @@ public class DiaActual {
         this.temp = temp;
     }
 
-    public float getDescripcion() {
+    public String getDescripcion() {
         return descripcion;
     }
 
-    public void setDescripcion(float descripcion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 

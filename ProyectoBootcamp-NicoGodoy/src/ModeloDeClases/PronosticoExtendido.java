@@ -61,4 +61,14 @@ public class PronosticoExtendido {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    @Override
+    public String toString() {
+        return "\nPronosticoExtendido\n" +
+                "\nfecha=" + fecha +
+                "\ndia=" + dia +
+                "\nmin=" + min +
+                "\nmax=" + max +
+                "\ndescripcion='" + descripcion;
+    }
 }
