@@ -8,7 +8,7 @@ public class Atmosfera {
     private float humedad;
     private float presion;
     private float visibilidad;
-    private float ambienteAsc;
+    private float ambienteAsc; //es la probabilidad de cambio de condiciones
 
     public Atmosfera(float humedad, float presion, float visibilidad, float ambienteAsc) {
         this.humedad = humedad;

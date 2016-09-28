@@ -9,12 +9,12 @@ import java.util.Date;
 public class PronosticoExtendido {
 
     private Date fecha;
-    private Calendar dia;
+    private Dia dia;
     private float min;
     private float max;
     private String descripcion;
 
-    public PronosticoExtendido(Date fecha, Calendar dia, float min, float max, String descripcion) {
+    public PronosticoExtendido(Date fecha, Dia dia, float min, float max, String descripcion) {
         this.fecha = fecha;
         this.dia = dia;
         this.min = min;
@@ -30,11 +30,11 @@ public class PronosticoExtendido {
         this.fecha = fecha;
     }
 
-    public Calendar getDia() {
+    public Dia getDia() {
         return dia;
     }
 
-    public void setDia(Calendar dia) {
+    public void setDia(Dia dia) {
         this.dia = dia;
     }
 
