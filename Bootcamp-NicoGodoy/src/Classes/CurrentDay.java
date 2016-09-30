@@ -1,17 +1,17 @@
-package ModeloDeClases;
+package Classes;
 
 import java.util.Date;
 
 /**
  * Created by Nico on 26/9/2016.
  */
-public class DiaActual {
+public class CurrentDay {
 
     private Date fecha;
     private float temp;
     private String descripcion;
 
-    public DiaActual(Date fecha, float temp, String descripcion) {
+    public CurrentDay(Date fecha, float temp, String descripcion) {
         this.fecha = fecha;
         this.temp = temp;
         this.descripcion = descripcion;
@@ -43,7 +43,7 @@ public class DiaActual {
 
     @Override
     public String toString() {
-        return "DiaActual{" +
+        return "CurrentDay{" +
                 "fecha=" + fecha +
                 ", temp=" + temp +
                 ", descripcion=" + descripcion +

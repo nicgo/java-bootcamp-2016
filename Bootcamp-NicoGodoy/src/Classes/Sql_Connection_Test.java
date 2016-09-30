@@ -1,7 +1,5 @@
-package ModeloDeClases;
+package Classes;
 import java.sql.*;
-
-import com.sun.javafx.css.converters.StringConverter;
 
 /**
  * Created by Nico on 28/9/2016.
@@ -17,6 +15,7 @@ public class Sql_Connection_Test {
         catch (SQLException ex)
         {
             System.out.println("Error!");
+            System.out.println(ex);
         }
     }
 

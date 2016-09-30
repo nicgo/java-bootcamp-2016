@@ -1,4 +1,4 @@
-package ModeloDeClases;
+package Classes;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
