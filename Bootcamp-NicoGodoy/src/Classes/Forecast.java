@@ -37,6 +37,7 @@ public class Forecast {
         this.day = day;
     }
 
+
     public Atmosphere getAtmosphere() {
         return atmosphere;
     }

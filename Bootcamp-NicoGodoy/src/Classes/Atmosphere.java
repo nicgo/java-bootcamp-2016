@@ -8,9 +8,9 @@ public class Atmosphere {
     private float humidity;
     private float pressure;
     private float visibility;
-    private float rising; //changin conditions probabilty
+    private int rising; //changin conditions probabilty
 
-    public Atmosphere(float humidity, float pressure, float visibility, float rising) {
+    public Atmosphere(float humidity, float pressure, float visibility, int rising) {
         this.humidity = humidity;
         this.pressure = pressure;
         this.visibility = visibility;
@@ -45,7 +45,7 @@ public class Atmosphere {
         return rising;
     }
 
-    public void setRising(float rising) {
+    public void setRising(int rising) {
         this.rising = rising;
     }
 
