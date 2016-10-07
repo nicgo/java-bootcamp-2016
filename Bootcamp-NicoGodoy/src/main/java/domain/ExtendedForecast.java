@@ -1,4 +1,4 @@
-package Classes;
+package domain;
 
 import java.util.Date;
 

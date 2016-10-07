@@ -1,5 +1,8 @@
-package Classes;
-import java.sql.*;
+package configuration;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Created by Nico on 28/9/2016.
@@ -34,5 +37,9 @@ public class Singleton_Sql_Connection {
             singletonSql_connection = new Singleton_Sql_Connection();
         }
         return singletonSql_connection;
+    }
+
+    public Connection getConect() {
+        return conect;
     }
 }

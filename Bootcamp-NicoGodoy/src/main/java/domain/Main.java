@@ -1,9 +1,14 @@
-package Classes;
+package domain;
 
 //import com.sun.org.apache.xpath.internal.operations.String;
-import java.sql.*;
+
+import configuration.Singleton_Sql_Connection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.*;
-import java.util.Date;
 
 /**
  * Created by Nico on 26/9/2016.
@@ -19,7 +24,7 @@ public class Main {
 
         //New connection to DB
         Singleton_Sql_Connection singletonSql_connection = Singleton_Sql_Connection.getInstance();
-        Connection connection= singletonSql_connection.conect;
+        Connection connection= singletonSql_connection.getConect();
         System.out.println();
 
 

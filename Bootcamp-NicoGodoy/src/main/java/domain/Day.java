@@ -1,4 +1,4 @@
-package Classes;
+package domain;
 
 /**
  * Created by Nico on 28/9/2016.

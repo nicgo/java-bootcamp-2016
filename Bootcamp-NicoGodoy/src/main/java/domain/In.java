@@ -1,11 +1,10 @@
-package Classes;
+package domain;
 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
-
-import java.util.StringTokenizer;
+import java.io.InputStreamReader;
 import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
 
 /**
  * La clase <b><code>In</code></b> permite que una aplicaci&oacute;n pueda leer 
