@@ -17,6 +17,8 @@ public class Atmosphere {
         this.rising = rising;
     }
 
+
+
     public float getHumidity() {
         return humidity;
     }
@@ -41,7 +43,7 @@ public class Atmosphere {
         this.visibility = visibility;
     }
 
-    public float getRising() {
+    public int getRising() {
         return rising;
     }
 

@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -7,21 +8,52 @@ import java.util.Date;
  */
 public class CurrentDay {
 
-    private Date date;
+    private Calendar date;
     private float temp;
     private String description;
 
-    public CurrentDay(Date date, float temp, String description) {
+    public CurrentDay(Calendar date, float temp, String description) {
         this.date = date;
         this.temp = temp;
         this.description = description;
     }
 
-    public Date getDate() {
+    public int getIdDescription(){
+        int descrip=0;
+        switch (description) {
+            case "Sunny":
+                descrip =1;
+                break;
+            case "Hazy":
+                descrip =2;
+                break;
+            case "Partly Cloudy":
+                descrip =3;
+                break;
+            case "Cloudy":
+                descrip =4;
+                break;
+            case "Rainy":
+                descrip =5;
+                break;
+            case "Stormy":
+                descrip =6;
+                break;
+            case "Snowy":
+                descrip =7;
+                break;
+            case "Windy":
+                descrip =8;
+                break;
+        }
+        return descrip;
+    }
+
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 

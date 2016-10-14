@@ -23,13 +23,20 @@ public class Forecast_Builder {
 
     public Forecast_Builder create_Default(){
         this.location=new Location("Vcp","Cba","Arg");
-        this.day= new CurrentDay(Calendar.getInstance().getTime(),27,"Cloudy");
+        this.day= new CurrentDay(Calendar.getInstance(),27,"Cloudy");
         this.atmosphere=new Atmosphere(40,70,95,2);
         this.wind=new Wind(50,100);
+
         this.extendedForecasts= new ArrayList<ExtendedForecast>();
-        extendedForecasts.add(new ExtendedForecast(Calendar.getInstance().getTime(), Day.Sun, 04, 12, "Cloudy"));
-        extendedForecasts.add(new ExtendedForecast(Calendar.getInstance().getTime(), Day.Mon, 04, 12, "Sunny"));
-        extendedForecasts.add(new ExtendedForecast(Calendar.getInstance().getTime(), Day.Tues, 04, 12, "Partly Cloudy"));
+        Calendar ext1= Calendar.getInstance();
+        ext1.add(Calendar.DAY_OF_MONTH,1);
+        extendedForecasts.add(new ExtendedForecast(ext1, Day.Sun, 04, 12, "Cloudy"));
+        Calendar ext2= Calendar.getInstance();
+        ext2.add(Calendar.DAY_OF_MONTH,2);
+        extendedForecasts.add(new ExtendedForecast(ext2, Day.Mon, 04, 12, "Sunny"));
+        Calendar ext3= Calendar.getInstance();
+        ext3.add(Calendar.DAY_OF_MONTH,3);
+        extendedForecasts.add(new ExtendedForecast(ext3, Day.Tues, 04, 12, "Partly Cloudy"));
         return this;
     }
 

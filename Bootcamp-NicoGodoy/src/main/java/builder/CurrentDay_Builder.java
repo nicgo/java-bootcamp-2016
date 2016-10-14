@@ -10,7 +10,7 @@ import java.util.Date;
  */
 public class CurrentDay_Builder {
 
-    private Date date;
+    private Calendar date;
     private float temp;
     private String description;
 
@@ -20,13 +20,13 @@ public class CurrentDay_Builder {
     }
 
     public CurrentDay_Builder create_Default(){
-        this.date =Calendar.getInstance().getTime();
+        this.date =Calendar.getInstance();
         this.temp=27;
         this.description ="Sunny";
         return this;
     }
 
-    public CurrentDay_Builder with_date(Date date){
+    public CurrentDay_Builder with_date(Calendar date){
         this.date=date;
         return this;
     }

@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by Nico on 6/10/2016.
  */
 public class ExtendedForecast_Builder {
-    private Date date;
+    private Calendar date;
     private Day day;
     private float low;
     private float high;
@@ -23,7 +23,7 @@ public class ExtendedForecast_Builder {
 
     public ExtendedForecast_Builder create_Default()
     {
-        this.date= Calendar.getInstance().getTime();
+        this.date= Calendar.getInstance();
         this.day=Day.Fri;
         this.low=12;
         this.high=29;
@@ -31,7 +31,7 @@ public class ExtendedForecast_Builder {
         return this;
     }
 
-    public  ExtendedForecast_Builder with_date(Date date){
+    public  ExtendedForecast_Builder with_date(Calendar date){
         this.date=date;
         return this;
     }

@@ -1,5 +1,6 @@
 package domain;
 
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -7,13 +8,13 @@ import java.util.Date;
  */
 public class ExtendedForecast {
 
-    private Date date;
+    private Calendar date;
     private Day day;
     private float low;
     private float high;
     private String description;
 
-    public ExtendedForecast(Date date, Day day, float low, float high, String description) {
+    public ExtendedForecast(Calendar date, Day day, float low, float high, String description) {
         this.date = date;
         this.day = day;
         this.low = low;
@@ -21,11 +22,42 @@ public class ExtendedForecast {
         this.description = description;
     }
 
-    public Date getDate() {
+    public int getIdDescription(){
+        int descrip=0;
+        switch (description) {
+            case "Sunny":
+                descrip =1;
+                break;
+            case "Hazy":
+                descrip =2;
+                break;
+            case "Partly Cloudy":
+                descrip =3;
+                break;
+            case "Cloudy":
+                descrip =4;
+                break;
+            case "Rainy":
+                descrip =5;
+                break;
+            case "Stormy":
+                descrip =6;
+                break;
+            case "Snowy":
+                descrip =7;
+                break;
+            case "Windy":
+                descrip =8;
+                break;
+        }
+        return descrip;
+    }
+
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 
@@ -64,10 +96,10 @@ public class ExtendedForecast {
     @Override
     public String toString() {
         return "\nExtendedForecast\n" +
-                "\ndate=" + date +
+                "\ndate=" + date.getTime() +
                 "\nday=" + day +
                 "\nlow=" + low +
                 "\nhigh=" + high +
-                "\ndescription='" + description;
+                "\ndescription=" + description;
     }
 }

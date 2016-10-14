@@ -3,6 +3,8 @@ import domain.Location;
 import org.hamcrest.core.Is;
 import org.junit.Assert;
 import org.junit.Test;
+import persistence.DAOLocation;
+import java.sql.SQLException;
 
 /**
  * Created by Nico on 7/10/2016.
@@ -20,4 +22,15 @@ public class Location_Test {
             Assert.assertThat(location.getCountry(), Is.is("Arg"));
 
     }
+
+    /*
+    @Test
+    public void test_WriteLocationOnDB() throws SQLException {
+        Location_Builder location_builder = new Location_Builder().with_City("Carlos Paz").with_Country("Argentina").with_Region("Punilla");
+        Location location = location_builder.create();
+
+        DAOLocation daoLocation = new DAOLocation();
+        daoLocation.inserInto(location);
+    }
+    */
 }

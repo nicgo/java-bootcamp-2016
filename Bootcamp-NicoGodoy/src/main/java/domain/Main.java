@@ -38,7 +38,7 @@ public class Main {
             case 1 :
                     {
                         int ext_Forec_Counter=1;//extended forecast counter
-                        GregorianCalendar calendar = new GregorianCalendar();
+                        GregorianCalendar calendar = new GregorianCalendar();//Current Date
                         Date date,extDate = new Date();
                         Day dayExt = null;//extended forecast day
                         List<ExtendedForecast> extendedForecastList=new ArrayList<ExtendedForecast>();
@@ -129,7 +129,7 @@ public class Main {
                                 break;
                         }
                         //Current Day
-                        CurrentDay currentDay = new CurrentDay(date,temp,descrip);
+                        CurrentDay currentDay = new CurrentDay(calendar,temp,descrip);
                         //writes Current Day on DB
                         try {
                             String SQL = "INSERT INTO DiaActual (fecha,temp,descripcion) VALUES (?,"+temp+","+value+")";
@@ -160,7 +160,7 @@ public class Main {
                         Atmosphere atmosf = new Atmosphere(humidity,pressure,visibility,rising);
                         //writes new Atmosphere on DB
                         try {
-                            String SQL = "INSERT INTO Atmosfera (id_atmosfera,humedad,presion,visibilidad,ambiente_asc) VALUES (1,"+humidity+","+pressure+","+visibility+","+rising+")";
+                            String SQL = "INSERT INTO Atmosfera (humedad,presion,visibilidad,ambiente_asc) VALUES ("+humidity+","+pressure+","+visibility+","+rising+")";
                             Statement stmt = connection.createStatement();
                             int count = stmt.executeUpdate(SQL);
                             System.out.println("afected rows: " + count);
@@ -182,7 +182,7 @@ public class Main {
                         Wind wind = new Wind(direction,velocity);
                         //writes new wind on DB
                         try {
-                            String SQL = "INSERT INTO Viento (id_viento,direccion,velocidad) VALUES (1,"+direction+","+velocity+")";
+                            String SQL = "INSERT INTO Viento (direccion,velocidad) VALUES ("+direction+","+velocity+")";
                             Statement stmt = connection.createStatement();
                             int count = stmt.executeUpdate(SQL);
                             System.out.println("afected rows: " + count);
@@ -195,29 +195,30 @@ public class Main {
 
                         //cycle to load the differents Extended Forecast
                         int load_another_option=0;
+
                         do {
                             calendar.add(Calendar.DAY_OF_MONTH, 1);//increase in a day, current day
                             extDate = calendar.getTime();//extended forecast day calculation
-                            switch (extDate.getDay()){//day calculation to set Enum Day
-                                case 0:
+                            switch (calendar.get(Calendar.DAY_OF_WEEK)){//day calculation to set Enum Day
+                                case 1:
                                     dayExt = Day.Sun;
                                     break;
-                                case 1:
+                                case 2:
                                     dayExt = Day.Mon;
                                     break;
-                                case 2:
+                                case 3:
                                     dayExt = Day.Tues;
                                     break;
-                                case 3:
+                                case 4:
                                     dayExt = Day.Wed;
                                     break;
-                                case 4:
+                                case 5:
                                     dayExt = Day.Thu;
                                     break;
-                                case 5:
+                                case 6:
                                     dayExt = Day.Fri;
                                     break;
-                                case 6:
+                                case 7:
                                     dayExt = Day.Sun;
                                     break;
 
@@ -259,7 +260,7 @@ public class Main {
                                     descrip2 = "Windy";
                                     break;
                             }
-                            extendedForecastList.add(new ExtendedForecast(extDate, dayExt,low,high,descrip2));
+                            extendedForecastList.add(new ExtendedForecast(calendar, dayExt,low,high,descrip2));
 
                             ext_Forec_Counter++;
                             System.out.println("Do you want to load another forecast? 1-Yes 2-No: ");
@@ -287,47 +288,22 @@ public class Main {
                         }
 
 
-                        int count_ext_Forecast =0;//Xtended forecast counter in the List
-                        int description=0;
+
                         for (ExtendedForecast ext_fore: extendedForecastList
-                                 ) {count_ext_Forecast++;
-                            switch (ext_fore.getDescription()) {
-                                case "Sunny":
-                                    description = 1;
-                                    break;
-                                case "Hazy":
-                                    description = 2;
-                                    break;
-                                case "Partly Cloudy":
-                                    description =3;
-                                    break;
-                                case "Cloudy":
-                                    description =4;
-                                    break;
-                                case "Rainy":
-                                    description =5;
-                                    break;
-                                case "Stormy":
-                                    description =6;
-                                    break;
-                                case "Snowy":
-                                    description =7;
-                                    break;
-                                case "Windy":
-                                    description =8;
-                                    break;
-                            }
+                                 ) {
                             try {
-                                java.sql.Date dateSQL_ext = new java.sql.Date(ext_fore.getDate().getTime());
-                                String SQL = "INSERT INTO Pronostico_Extendido VALUES ("+count_ext_Forecast+",?"
-                                        +",'"+location.getCity()+"','"+location.getCountry()+"','"+location.getRegion()
+                                java.sql.Date dateSQL_ext = new java.sql.Date(ext_fore.getDate().getTime().getTime());//cast for Extended Forecast date
+                                java.sql.Date dateSQL_forecast = new java.sql.Date(forecast.getDay().getDate().getTime().getTime());// cast for Forecast date
+                                String SQL = "INSERT INTO Pronostico_Extendido VALUES ('"+dateSQL_forecast+"','"
+                                        +location.getCity()+"','"+location.getCountry()+"','"+location.getRegion()
                                         +"',"+ext_fore.getLow()
                                         +","+ext_fore.getHigh()
-                                        +","+description
-                                        +",'"+ext_fore.getDay().toString()+"')";
-                                PreparedStatement stmt = connection.prepareStatement(SQL);
-                                stmt.setDate(1,dateSQL);
-                                int count = stmt.executeUpdate();
+                                        +","+ext_fore.getIdDescription()
+                                        +",'"+ext_fore.getDay().toString()
+                                        +"','"+dateSQL_ext+"')";
+                                Statement stmt = connection.createStatement();
+                                System.out.println(SQL);
+                                int count = stmt.executeUpdate(SQL);
                                 System.out.println("Extended Forecast Added to DB!, afected rows: " + count);
                                 stmt.close();
                             }
@@ -353,7 +329,7 @@ public class Main {
 
                                 while (rs.next()) {
                                     System.out.println(rs.getString(1) + ", "
-                                            + rs.getString(2)
+                                            + rs.getString(2)+ ", "
                                             +rs.getString(3) + ", "
                                             +rs.getString(4) + ", "
                                             +rs.getString(5) + ", "
@@ -372,7 +348,7 @@ public class Main {
 
 
                     }
-                    System.out.println("\nEnter an option: \n1-Read DB \n4-Exit");
+                    System.out.println("\nEnter an option: \n1-Read DB \n2-Exit");
                     opt=In.readInt();
                 }
                 while (opt!=2);
